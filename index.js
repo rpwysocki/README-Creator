@@ -35,16 +35,32 @@ inquirer.prompt([
         message: 'Please choose a license.',
         type: 'list',
         choices:['MIT License', 'Apache License 2.0', 'GNU General Public License v3.0', 'Boost Software License 1.0']
-
+    },
+    {
+        name: 'contributions',
+        message: 'Enter contribution guidelines here.',        
+    },
+    {
+        name: 'testing',
+        message: 'Please enter any testing information.',
+    },
+    {
+        name: 'questions',
+        message: 'Enter your Github username.',
+        message: 'Enter a valid email address.',
     }
 
-]).then(({title, description, installation, usage, license}) => {
+
+]).then(({title, description, installation, usage, license, contributions, testing, questions}) => {
     const questions = `
-    ##Title: ${title}
-    #Description: ${description}
-    #Installation: ${installation}
-    #Usage: ${usage}
-    #License: ${license}
+    ## Title: ${title}
+    # Description: ${description}
+    # Installation: ${installation}
+    # Usage: ${usage}
+    # License: ${license}
+    # Contributions: ${contributions}
+    # Testing: ${testing}
+    # Questions: ${questions}
     `
     fs.writeFile('./README.md', questions, err);
 });
