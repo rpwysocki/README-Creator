@@ -40,11 +40,11 @@ inquirer.prompt([
 
 ]).then(({title, description, installation, usage, license}) => {
     const questions = `
-    Title: ${title}
-    Description: ${description}
-    Installation: ${installation}
-    Usage: ${usage}
-    License: ${license}
+    ##Title: ${title}
+    #Description: ${description}
+    #Installation: ${installation}
+    #Usage: ${usage}
+    #License: ${license}
     `
     fs.writeFile('./README.md', questions, err);
 });
