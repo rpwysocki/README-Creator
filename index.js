@@ -34,11 +34,11 @@ inquirer.prompt([
         name: 'license',
         message: 'Please choose a license.',
         type: 'list',
-        choices:['MIT License', 'Apache License 2.0', 'GNU General Public License v3.0', 'Boost Software License 1.0']
+        choices: ['MIT License', 'Apache License 2.0', 'GNU General Public License v3.0', 'Boost Software License 1.0']
     },
     {
         name: 'contributions',
-        message: 'Enter contribution guidelines here.',        
+        message: 'Enter contribution guidelines here.',
     },
     {
         name: 'testing',
@@ -51,18 +51,18 @@ inquirer.prompt([
     }
 
 
-]).then(({title, description, installation, usage, license, contributions, testing, questions}) => {
-    const questions = `
-    ## Title: ${title}
-    # Description: ${description}
-    # Installation: ${installation}
-    # Usage: ${usage}
-    # License: ${license}
-    # Contributions: ${contributions}
-    # Testing: ${testing}
-    # Questions: ${questions}
+]).then(({ title, description, installation, usage, license, contributions, testing, questions }) => {
+    const readMe = `
+ ## Title: ${title}
+ # Description: ${description}
+ # Installation: ${installation}
+ # Usage: ${usage}
+ # License: ${license}
+ # Contributions: ${contributions}
+ # Testing: ${testing}
+ # Questions: ${questions}
     `
-    fs.writeFile('./README.md', questions, err);
+    fs.writeFile('./README.md', readMe, err);
 });
 
 // // TODO: Create a function to write README file
