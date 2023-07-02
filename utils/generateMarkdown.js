@@ -1,35 +1,36 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license !== 'None') {
-    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
+    return `![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)`;
   }
-  return '';
+  return 'None';
 }
 
-// TODO: Create a function that returns the license link
+// Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  if (license !== 'None') {
-    return `\n* [![License: MIT](https://opensource.org/licenses/MIT)]\n`;
+  if (license == 'None') {
+    return `\n* [License](#license)\n`;
   }
-  return '';
+  else if (license == 'Apache_2.0') {
+    return `\n* [Apache_2.0](https://www.apache.org/licenses/LICENSE-2.0.html)\n`
+  }
+  return 'None';
 }
 
-// TODO: Create a function that returns the license section of README
+// Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if (license !== 'None') {
-    return `## License
-  
-  This project is licensed under the ${license} license.`;
+  console.log(license)
+  if (license == 'None') {
+    return '## License: None';
   }
-  return '';
+  else if (license == 'Apache_2.0') {
+    return `## License:
+    This project is licensed under the${renderLicenseLink(license)}license.`
+  }
+  
 }
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}`;
-}
-
-module.exports = generateMarkdown;
+module.exports = {renderLicenseBadge, renderLicenseLink, renderLicenseSection};

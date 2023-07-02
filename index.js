@@ -2,8 +2,7 @@
 const fs = require('fs');
 
 const inquirer = require('inquirer');
-const { default: Choice } = require('inquirer/lib/objects/choice');
-const { default: Choices } = require('inquirer/lib/objects/choices');
+const {renderLicenseBadge, renderLicenseLink, renderLicenseSection} = require('./utils/generateMarkdown')
 
 const err = (err) => {
     if (err) throw err;
@@ -34,7 +33,7 @@ inquirer.prompt([
         name: 'license',
         message: 'Please choose a license.',
         type: 'list',
-        choices: ['MIT License', 'Apache License 2.0', 'GNU General Public License v3.0', 'Boost Software License 1.0']
+        choices: ['None','MIT', 'Apache_2.0', 'GNU_v3.0', 'Boost_Software_1.0']
     },
     {
         name: 'contributions',
@@ -46,21 +45,35 @@ inquirer.prompt([
     },
     {
         name: 'questions',
-        message: 'Enter your Github username.',
-        message: 'Enter a valid email address.',
+        message: 'Please refer to the Github profile - https://github.com/rpwysocki/README-Creator',
+        
     }
 
 
 ]).then(({ title, description, installation, usage, license, contributions, testing, questions }) => {
     const readMe = `
- ## Title: ${title}
- # Description: ${description}
- # Installation: ${installation}
- # Usage: ${usage}
- # License: ${license}
- # Contributions: ${contributions}
- # Testing: ${testing}
- # Questions: ${questions}
+# ${title}   ${renderLicenseBadge(license)}   
+## Description: ${description}
+
+## Table of contents:
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [License](#license)
+4. [Contributions](#contributions)
+5. [Testing](#testing)
+6. [Questions](#questions)
+
+## Installation: ${installation}
+## Usage: ${usage}
+${renderLicenseSection(license)}
+
+
+
+
+## Contributions: ${contributions}
+## Testing: ${testing}
+## Questions: Please refer to the Github profile page - https://github.com/rpwysocki/README-Creator
     `
     fs.writeFile('./README.md', readMe, err);
 });
