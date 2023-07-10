@@ -13,8 +13,8 @@ function renderLicenseLink(license) {
   if (license == 'None') {
     return `\n* [License](#license)\n`;
   }
-  else if (license == 'Apache_2.0') {
-    return `\n* [Apache_2.0](https://www.apache.org/licenses/LICENSE-2.0.html)\n`
+  else if (license == 'MIT') {
+    return `\n* [MIT](https://opensource.org/license/mit-0/)\n`
   }
   return 'None';
 }
@@ -26,7 +26,7 @@ function renderLicenseSection(license) {
   if (license == 'None') {
     return '## License: None';
   }
-  else if (license == 'Apache_2.0') {
+  else if (license == 'MIT') {
     return `## License:
     This project is licensed under the${renderLicenseLink(license)}license.`
   }
